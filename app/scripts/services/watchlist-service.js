@@ -15,9 +15,10 @@ angular.module('stockDogApp')
     	var model = {
     		watchlists: localStorage['StockDog.watchlists'] ? 
     		JSON.parse(localStorage['StockDog.watchlists']) : [],
-    		nextId : localStorage['StockDog.nextId'] ?
-    		   parseInt(['StockDog.nextId']) : 0
+    		nextId : (localStorage['StockDog.nextId']!==null && localStorage['StockDog.nextId'] >=0) ?
+    		   parseInt(localStorage['StockDog.nextId']) : parseInt(0)
     	};
+        
     	return model;
     };
 
@@ -29,7 +30,7 @@ angular.module('stockDogApp')
 
     var findById = function(listId){
     	return _.find(Model.watchlists, function(watchlist){
-    		return watchlist.id == parseInt(listId);
+    		return watchlist.id === parseInt(listId);
     	});
     };
 
@@ -49,7 +50,7 @@ angular.module('stockDogApp')
 
     this.remove = function(watchlist){
     	_.remove(Model.watchlists, function(list){
-    		return list.id == watchlist.id;
+    		return list.id === watchlist.id;
     	});
     	saveModel();
     };
