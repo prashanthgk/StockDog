@@ -8,7 +8,7 @@
     </div>
     <div class="panel-body">
         <!–– [2] Show help text if no watchlists exist ––>
-        <div ng-if="!watchlists.length" class="text-center">
+        <div ng-hide="watchlists.length" class="text-center">
             Use <span class="glyphicon glyphicon-plus"></span> to create a list 
         </div>
         <div class="list-group">
